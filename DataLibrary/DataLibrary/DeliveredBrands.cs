@@ -5,9 +5,10 @@ namespace DataLibrary
 {
     public partial class DeliveredBrands
     {
-        public string ProducedBrandsId { get; set; }
+        public string ProduceBrandsId { get; set; }
+        public string Id { get; set; }
         public int? CountOfDelivered { get; set; }
 
-        public virtual ProducedBrands ProducedBrands { get; set; }
+        //public virtual ProducedBrands ProduceBrands { get; set; }
     }
 }
