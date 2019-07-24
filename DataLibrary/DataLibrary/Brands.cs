@@ -5,9 +5,11 @@ namespace DataLibrary
 {
     public partial class Brands
     {
-        public Brands()
+        public Brands(string Name)
         {
             ProducedBrands = new HashSet<ProducedBrands>();
+            this.Name = Name;
+            Id = Settings.GenerateId();
         }
 
         public string Id { get; set; }

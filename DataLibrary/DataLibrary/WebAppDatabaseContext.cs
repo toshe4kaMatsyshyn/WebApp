@@ -109,5 +109,19 @@ namespace DataLibrary
                     .HasConstraintName("FK_TerminalsAndBrands_Terminal");
             });
         }
+
+        /// <summary>
+        /// Добавляет новый бренд, если такого еще не существует
+        /// </summary>
+        /// <param name="newBrand">Бренд, который пользователь хочет добавить</param>
+        /// <returns>Удалось ли добавить новый бренд</returns>
+        public bool AddNewBrand(Brands newBrand)
+        {
+            foreach (Brands brand in Brands)
+                if (brand.Name.StartsWith(newBrand.Name)) return false;
+            Brands.Add(newBrand);
+            SaveChanges();
+            return true;
+        }
     }
 }
