@@ -5,15 +5,14 @@ namespace DataLibrary
 {
     public partial class Brands
     {
-        public Brands(string Name)
+        public Brands()
         {
-            this.Name = Name;
-            Id = Settings.GenerateRandomId();
+            ProducedBrands = new HashSet<ProducedBrands>();
         }
-        
+
         public string Id { get; set; }
         public string Name { get; set; }
 
-       // public virtual ProducedBrands ProducedBrands { get; set; }
+        public virtual ICollection<ProducedBrands> ProducedBrands { get; set; }
     }
 }
