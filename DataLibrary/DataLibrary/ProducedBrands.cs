@@ -10,8 +10,25 @@ namespace DataLibrary
             DeliveredBrands = new HashSet<DeliveredBrands>();
             TerminalsAndBrands = new HashSet<TerminalsAndBrands>();
         }
+        public ProducedBrands(Brands brand, int? CountOfProduced):this(brand,CountOfProduced,DateTime.Today)
+        {
 
-        public string Id { get; set; }
+        }
+        public ProducedBrands(Brands brand, int? CountOfProduced, DateTime? YearOfProduced)
+        {
+            Brand = brand;
+            Brand.ProducedBrands.Add(this);
+            BrandId = brand.Id;
+
+            Id = Settings.GenerateId();
+            this.CountOfProduced = CountOfProduced;
+            this.YearOfProduced = YearOfProduced;
+
+            DeliveredBrands = new HashSet<DeliveredBrands>();
+            TerminalsAndBrands = new HashSet<TerminalsAndBrands>();
+        }
+
+        public string Id { get; protected set; }
         public string BrandId { get; set; }
         public DateTime? YearOfProduced { get; set; }
         public int? CountOfProduced { get; set; }
