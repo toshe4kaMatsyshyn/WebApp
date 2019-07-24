@@ -6,6 +6,7 @@ namespace DataLibrary
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             using (WebAppDatabaseContext context = new WebAppDatabaseContext())
             {
                 Brands lada = new Brands("Ferari");
@@ -16,6 +17,9 @@ namespace DataLibrary
                     Console.WriteLine(brands.Name);
             }
             Console.ReadKey();
+=======
+            Console.WriteLine("Hello World!");
+>>>>>>> parent of a78e83a... Reverse Engineering
         }
     }
 }
