@@ -1,0 +1,113 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+
+namespace DataLibrary
+{
+    public partial class WebAppDatabaseContext : DbContext
+    {
+        public WebAppDatabaseContext()
+        {
+        }
+
+        public WebAppDatabaseContext(DbContextOptions<WebAppDatabaseContext> options)
+            : base(options)
+        {
+        }
+
+        public virtual DbSet<Brands> Brands { get; set; }
+        public virtual DbSet<DeliveredBrands> DeliveredBrands { get; set; }
+        public virtual DbSet<ProducedBrands> ProducedBrands { get; set; }
+        public virtual DbSet<Terminal> Terminal { get; set; }
+        public virtual DbSet<TerminalsAndBrands> TerminalsAndBrands { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-GN3L1JT\\SQLEXPRESS;Database=WebAppDatabase;Trusted_Connection=True;");
+            }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+
+            modelBuilder.Entity<Brands>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(10)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name).HasMaxLength(10);
+            });
+
+            modelBuilder.Entity<DeliveredBrands>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(20)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.ProduceBrandsId)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.HasOne(d => d.ProduceBrands)
+                    .WithMany(p => p.DeliveredBrands)
+                    .HasForeignKey(d => d.ProduceBrandsId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DeliveredBrands_ProducedBrands");
+            });
+
+            modelBuilder.Entity<ProducedBrands>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(20)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.BrandId)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.YearOfProduced).HasColumnType("date");
+
+                entity.HasOne(d => d.Brand)
+                    .WithMany(p => p.ProducedBrands)
+                    .HasForeignKey(d => d.BrandId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ProducedBrands_Brands");
+            });
+
+            modelBuilder.Entity<Terminal>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(10)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name).HasMaxLength(10);
+            });
+
+            modelBuilder.Entity<TerminalsAndBrands>(entity =>
+            {
+                entity.HasKey(e => new { e.ProducedBrandsId, e.TerminalId });
+
+                entity.Property(e => e.ProducedBrandsId).HasMaxLength(20);
+
+                entity.Property(e => e.TerminalId).HasMaxLength(10);
+
+                entity.HasOne(d => d.ProducedBrands)
+                    .WithMany(p => p.TerminalsAndBrands)
+                    .HasForeignKey(d => d.ProducedBrandsId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TerminalsAndBrands_ProducedBrands");
+
+                entity.HasOne(d => d.Terminal)
+                    .WithMany(p => p.TerminalsAndBrands)
+                    .HasForeignKey(d => d.TerminalId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TerminalsAndBrands_Terminal");
+            });
+        }
+    }
+}

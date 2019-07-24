@@ -8,7 +8,7 @@ namespace DataLibrary
         public string ProducedBrandsId { get; set; }
         public string TerminalId { get; set; }
 
-       // public virtual ProducedBrands ProducedBrands { get; set; }
+        public virtual ProducedBrands ProducedBrands { get; set; }
         public virtual Terminal Terminal { get; set; }
     }
 }

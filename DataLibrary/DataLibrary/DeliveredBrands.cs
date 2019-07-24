@@ -9,6 +9,6 @@ namespace DataLibrary
         public string Id { get; set; }
         public int? CountOfDelivered { get; set; }
 
-        //public virtual ProducedBrands ProduceBrands { get; set; }
+        public virtual ProducedBrands ProduceBrands { get; set; }
     }
 }
