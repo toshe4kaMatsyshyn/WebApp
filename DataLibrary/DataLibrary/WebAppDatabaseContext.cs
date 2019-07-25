@@ -209,6 +209,29 @@ namespace DataLibrary
                 return false;
             }
         }
+
+        /// <summary>
+        /// Добавляет производимый бренд к терминалу
+        /// </summary>
+        /// <param name="produced"></param>
+        /// <param name="terminal"></param>
+        /// <returns>Удалось ли добавить бренд</returns>
+        public bool AddProducedBrandToTerminal(ProducedBrands produced, Terminal terminal)
+        {
+            try
+            {
+                TerminalsAndBrands terminalAndBrand = new TerminalsAndBrands(produced, terminal);
+                TerminalsAndBrands.Add(terminalAndBrand);
+                SaveChanges();
+                terminal.ProducedBrands += 1;
+                return true;
+            }
+            catch(Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+                return false;
+            }
+        }
     }
 }
 
