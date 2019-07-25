@@ -8,7 +8,6 @@ namespace DataLibrary
     {
         public WebAppDatabaseContext()
         {
-            
         }
 
         public WebAppDatabaseContext(DbContextOptions<WebAppDatabaseContext> options)
@@ -86,7 +85,7 @@ namespace DataLibrary
                     .HasMaxLength(10)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Name).HasMaxLength(10);
+                entity.Property(e => e.Name).HasMaxLength(30);
             });
 
             modelBuilder.Entity<TerminalsAndBrands>(entity =>
@@ -126,7 +125,7 @@ namespace DataLibrary
                 SaveChanges();
                 return true;
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 return false;
             }
@@ -147,7 +146,7 @@ namespace DataLibrary
                 SaveChanges();
                 return true;
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 return false;
             }
@@ -169,7 +168,7 @@ namespace DataLibrary
                 //Если хотим продать больше чем произвели продать не получиться 
                 int? GeneralSumOfProduced = produced.CountOfProduced;
 
-                foreach(DeliveredBrands delivereds in produced.DeliveredBrands)
+                foreach (DeliveredBrands delivereds in produced.DeliveredBrands)
                     GeneralSumOfProduced -= delivereds.CountOfDelivered;
 
                 GeneralSumOfProduced -= delivered.CountOfDelivered;
@@ -183,10 +182,11 @@ namespace DataLibrary
                 SaveChanges();
                 return true;
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 return false;
             }
         }
     }
 }
+

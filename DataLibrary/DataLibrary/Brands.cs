@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataLibrary
 {
-    public class Brands
+    public partial class Brands
     {
         public Brands()
         {
@@ -16,7 +16,7 @@ namespace DataLibrary
             Id = Settings.GenerateId();
         }
 
-        public string Id { get; protected set; }
+        public string Id { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<ProducedBrands> ProducedBrands { get; set; }

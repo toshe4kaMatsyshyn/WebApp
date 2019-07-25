@@ -10,7 +10,7 @@ namespace DataLibrary
 
         }
 
-        public DeliveredBrands(ProducedBrands produced,int? CountOfDelivered)
+        public DeliveredBrands(ProducedBrands produced, int? CountOfDelivered)
         {
             this.ProduceBrands = produced;
             ProduceBrandsId = produced.Id;
@@ -18,6 +18,7 @@ namespace DataLibrary
             Id = Settings.GenerateId();
             this.CountOfDelivered = CountOfDelivered;
         }
+
         public string ProduceBrandsId { get; set; }
         public string Id { get; set; }
         public int? CountOfDelivered { get; set; }

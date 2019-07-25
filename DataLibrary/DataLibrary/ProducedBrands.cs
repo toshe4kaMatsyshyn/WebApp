@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace DataLibrary
 {
-    public class ProducedBrands
+    public partial class ProducedBrands
     {
         public ProducedBrands()
         {
             DeliveredBrands = new HashSet<DeliveredBrands>();
             TerminalsAndBrands = new HashSet<TerminalsAndBrands>();
         }
-        public ProducedBrands(Brands brand, int? CountOfProduced):this(brand,CountOfProduced,DateTime.Today)
+        public ProducedBrands(Brands brand, int? CountOfProduced) : this(brand, CountOfProduced, DateTime.Today)
         {
 
         }
@@ -28,7 +28,7 @@ namespace DataLibrary
             TerminalsAndBrands = new HashSet<TerminalsAndBrands>();
         }
 
-        public string Id { get; protected set; }
+        public string Id { get; set; }
         public string BrandId { get; set; }
         public DateTime? YearOfProduced { get; set; }
         public int? CountOfProduced { get; set; }
