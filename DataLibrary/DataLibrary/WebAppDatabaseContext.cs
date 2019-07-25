@@ -124,6 +124,21 @@ namespace DataLibrary
             return true;
         }
 
+        /// <summary>
+        /// Добавляет производимый бренд
+        /// </summary>
+        /// <param name="produced">Производимый бренд, который хотим добавить</param>
+        /// <returns>
+        /// Удалось ли добавить новый производимый бренд
+        /// (Возможно позже будем дописывать логику с некоторыми ограничениями)
+        /// </returns>
+        public bool AddNewProducedBrans(ProducedBrands produced)
+        {
+            ProducedBrands.Add(produced);
+            SaveChanges();
+            return true;
+        }
+
 
     }
 }

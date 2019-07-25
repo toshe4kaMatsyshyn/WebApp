@@ -16,8 +16,8 @@ namespace DataLibrary
         }
         public ProducedBrands(Brands brand, int? CountOfProduced, DateTime? YearOfProduced)
         {
-            Brand = brand;
-            Brand.ProducedBrands.Add(this);
+            this.Brand = brand;
+            this.Brand.ProducedBrands.Add(this);
             BrandId = brand.Id;
 
             Id = Settings.GenerateId();
