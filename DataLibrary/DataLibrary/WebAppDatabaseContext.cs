@@ -134,15 +134,15 @@ namespace DataLibrary
         /// <summary>
         /// Добавляет производимый бренд
         /// </summary>
-        /// <param name="produced">Производимый бренд, который хотим добавить</param>
+        /// <param name="newProduced">Производимый бренд, который хотим добавить</param>
         /// <returns>
         /// Удалось ли добавить новый производимый бренд
         /// </returns>
-        public bool AddNewProducedBrand(ProducedBrands produced)
+        public bool AddNewProducedBrand(ProducedBrands newProduced)
         {
             try
             {
-                ProducedBrands.Add(produced);
+                ProducedBrands.Add(newProduced);
                 SaveChanges();
                 return true;
             }
@@ -155,13 +155,13 @@ namespace DataLibrary
         /// <summary>
         /// Добавляет доставленый бренд
         /// </summary>
-        /// <param name="delivered">Доставленый бренд, который хотим добавить</param>
+        /// <param name="newDelivered">Доставленый бренд, который хотим добавить</param>
         /// <returns>Удалось ли добавить новый доставленый бренд</returns>
-        public bool AddNewDeliveredBrand(DeliveredBrands delivered)
+        public bool AddNewDeliveredBrand(DeliveredBrands newDelivered)
         {
             try
             {
-                var produced = delivered.ProduceBrands;
+                var produced = newDelivered.ProduceBrands;
                 Entry(produced).Collection("DeliveredBrands").Load();
 
                 //Сохраняем количество произведенных авто для проверки
@@ -171,18 +171,40 @@ namespace DataLibrary
                 foreach (DeliveredBrands delivereds in produced.DeliveredBrands)
                     GeneralSumOfProduced -= delivereds.CountOfDelivered;
 
-                GeneralSumOfProduced -= delivered.CountOfDelivered;
+                GeneralSumOfProduced -= newDelivered.CountOfDelivered;
 
                 if (GeneralSumOfProduced < 0)
                 {
                     return false;
                 }
 
-                DeliveredBrands.Add(delivered);
+                DeliveredBrands.Add(newDelivered);
                 SaveChanges();
                 return true;
             }
             catch (Exception exc)
+            {
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Добавляет новый терминал
+        /// </summary>
+        /// <param name="newTerminal">Новый терминал, который хотим добавить</param>
+        /// <returns>Удалось ли добавить новый терминал</returns>
+        public bool AddNewTerminal(Terminal newTerminal)
+        {
+            try
+            {
+                foreach (Terminal terminal in Terminal)
+                    if (terminal.Name.StartsWith(newTerminal.Name)) return false;
+                Terminal.Add(newTerminal);
+                SaveChanges();
+                return true;
+            }
+            catch(Exception exc)
             {
                 return false;
             }
