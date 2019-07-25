@@ -9,6 +9,12 @@ namespace DataLibrary
         {
             ProducedBrands = new HashSet<ProducedBrands>();
         }
+        public Brands(string Name)
+        {
+            ProducedBrands = new HashSet<ProducedBrands>();
+            this.Name = Name;
+            Id = Settings.GenerateId();
+        }
 
         public string Id { get; set; }
         public string Name { get; set; }

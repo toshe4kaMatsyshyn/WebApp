@@ -3684,23 +3684,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tima\\.nuget\\packages\\": {},
+    "C:\\Users\\Антон Мацишин\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tima\\Documents\\GitHub\\WebApp\\DataLibrary\\DataLibrary\\DataLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\Антон Мацишин\\Documents\\GitHub\\WebApp\\DataLibrary\\DataLibrary\\DataLibrary.csproj",
       "projectName": "DataLibrary",
-      "projectPath": "C:\\Users\\Tima\\Documents\\GitHub\\WebApp\\DataLibrary\\DataLibrary\\DataLibrary.csproj",
-      "packagesPath": "C:\\Users\\Tima\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tima\\Documents\\GitHub\\WebApp\\DataLibrary\\DataLibrary\\obj\\",
+      "projectPath": "C:\\Users\\Антон Мацишин\\Documents\\GitHub\\WebApp\\DataLibrary\\DataLibrary\\DataLibrary.csproj",
+      "packagesPath": "C:\\Users\\Антон Мацишин\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Антон Мацишин\\Documents\\GitHub\\WebApp\\DataLibrary\\DataLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tima\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Антон Мацишин\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

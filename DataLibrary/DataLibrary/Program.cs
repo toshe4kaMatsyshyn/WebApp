@@ -6,9 +6,14 @@ namespace DataLibrary
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            
-
+            Random rnd = new Random();
+            using (WebAppDatabaseContext context = new WebAppDatabaseContext())
+            {
+                foreach (Terminal terminal in context.Terminal)
+                    if (terminal.Id.StartsWith("MVHNAXHYTR")) terminal.ProducedBrands = 1;
+                context.SaveChanges();
+            }
+            Console.ReadKey();
         }
     }
 }

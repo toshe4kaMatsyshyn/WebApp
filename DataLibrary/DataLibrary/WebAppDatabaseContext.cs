@@ -85,7 +85,7 @@ namespace DataLibrary
                     .HasMaxLength(10)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Name).HasMaxLength(10);
+                entity.Property(e => e.Name).HasMaxLength(30);
             });
 
             modelBuilder.Entity<TerminalsAndBrands>(entity =>
@@ -109,5 +109,129 @@ namespace DataLibrary
                     .HasConstraintName("FK_TerminalsAndBrands_Terminal");
             });
         }
+
+        /// <summary>
+        /// Добавляет новый бренд, если такого еще не существует
+        /// </summary>
+        /// <param name="newBrand">Бренд, который пользователь хочет добавить</param>
+        /// <returns>Удалось ли добавить новый бренд</returns>
+        public bool AddNewBrand(Brands newBrand)
+        {
+            try
+            {
+                foreach (Brands brand in Brands)
+                    if (brand.Name.StartsWith(newBrand.Name)) return false;
+                Brands.Add(newBrand);
+                SaveChanges();
+                return true;
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Добавляет производимый бренд
+        /// </summary>
+        /// <param name="newProduced">Производимый бренд, который хотим добавить</param>
+        /// <returns>
+        /// Удалось ли добавить новый производимый бренд
+        /// </returns>
+        public bool AddNewProducedBrand(ProducedBrands newProduced)
+        {
+            try
+            {
+                ProducedBrands.Add(newProduced);
+                SaveChanges();
+                return true;
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Добавляет доставленый бренд
+        /// </summary>
+        /// <param name="newDelivered">Доставленый бренд, который хотим добавить</param>
+        /// <returns>Удалось ли добавить новый доставленый бренд</returns>
+        public bool AddNewDeliveredBrand(DeliveredBrands newDelivered)
+        {
+            try
+            {
+                var produced = newDelivered.ProduceBrands;
+                Entry(produced).Collection("DeliveredBrands").Load();
+
+                //Сохраняем количество произведенных авто для проверки
+                //Если хотим продать больше чем произвели продать не получиться 
+                int? GeneralSumOfProduced = produced.CountOfProduced;
+
+                foreach (DeliveredBrands delivereds in produced.DeliveredBrands)
+                    GeneralSumOfProduced -= delivereds.CountOfDelivered;
+
+                GeneralSumOfProduced -= newDelivered.CountOfDelivered;
+
+                if (GeneralSumOfProduced < 0)
+                {
+                    return false;
+                }
+
+                DeliveredBrands.Add(newDelivered);
+                SaveChanges();
+                return true;
+            }
+            catch (Exception exc)
+            {
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Добавляет новый терминал
+        /// </summary>
+        /// <param name="newTerminal">Новый терминал, который хотим добавить</param>
+        /// <returns>Удалось ли добавить новый терминал</returns>
+        public bool AddNewTerminal(Terminal newTerminal)
+        {
+            try
+            {
+                foreach (Terminal terminal in Terminal)
+                    if (terminal.Name.StartsWith(newTerminal.Name)) return false;
+                Terminal.Add(newTerminal);
+                SaveChanges();
+                return true;
+            }
+            catch(Exception exc)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Добавляет производимый бренд к терминалу
+        /// </summary>
+        /// <param name="produced"></param>
+        /// <param name="terminal"></param>
+        /// <returns>Удалось ли добавить бренд</returns>
+        public bool AddProducedBrandToTerminal(ProducedBrands produced, Terminal terminal)
+        {
+            try
+            {
+                TerminalsAndBrands terminalAndBrand = new TerminalsAndBrands(produced, terminal);
+                TerminalsAndBrands.Add(terminalAndBrand);
+                SaveChanges();
+                terminal.ProducedBrands += 1;
+                return true;
+            }
+            catch(Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+                return false;
+            }
+        }
     }
 }
+
