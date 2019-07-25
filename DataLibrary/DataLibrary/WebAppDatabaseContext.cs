@@ -117,11 +117,18 @@ namespace DataLibrary
         /// <returns>Удалось ли добавить новый бренд</returns>
         public bool AddNewBrand(Brands newBrand)
         {
-            foreach (Brands brand in Brands)
-                if (brand.Name.StartsWith(newBrand.Name)) return false;
-            Brands.Add(newBrand);
-            SaveChanges();
-            return true;
+            try
+            {
+                foreach (Brands brand in Brands)
+                    if (brand.Name.StartsWith(newBrand.Name)) return false;
+                Brands.Add(newBrand);
+                SaveChanges();
+                return true;
+            }
+            catch(Exception exc)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -130,15 +137,20 @@ namespace DataLibrary
         /// <param name="produced">Производимый бренд, который хотим добавить</param>
         /// <returns>
         /// Удалось ли добавить новый производимый бренд
-        /// (Возможно позже будем дописывать логику с некоторыми ограничениями)
         /// </returns>
         public bool AddNewProducedBrans(ProducedBrands produced)
         {
-            ProducedBrands.Add(produced);
-            SaveChanges();
-            return true;
+            try
+            {
+                ProducedBrands.Add(produced);
+                SaveChanges();
+                return true;
+            }
+            catch(Exception exc)
+            {
+                return false;
+            }
         }
-
 
     }
 }
