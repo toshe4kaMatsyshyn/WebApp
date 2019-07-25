@@ -8,6 +8,7 @@ namespace DataLibrary
     {
         public WebAppDatabaseContext()
         {
+            
         }
 
         public WebAppDatabaseContext(DbContextOptions<WebAppDatabaseContext> options)
@@ -138,7 +139,7 @@ namespace DataLibrary
         /// <returns>
         /// Удалось ли добавить новый производимый бренд
         /// </returns>
-        public bool AddNewProducedBrans(ProducedBrands produced)
+        public bool AddNewProducedBrand(ProducedBrands produced)
         {
             try
             {
@@ -152,5 +153,40 @@ namespace DataLibrary
             }
         }
 
+        /// <summary>
+        /// Добавляет доставленый бренд
+        /// </summary>
+        /// <param name="delivered">Доставленый бренд, который хотим добавить</param>
+        /// <returns>Удалось ли добавить новый доставленый бренд</returns>
+        public bool AddNewDeliveredBrand(DeliveredBrands delivered)
+        {
+            try
+            {
+                var produced = delivered.ProduceBrands;
+                Entry(produced).Collection("DeliveredBrands").Load();
+
+                //Сохраняем количество произведенных авто для проверки
+                //Если хотим продать больше чем произвели продать не получиться 
+                int? GeneralSumOfProduced = produced.CountOfProduced;
+
+                foreach(DeliveredBrands delivereds in produced.DeliveredBrands)
+                    GeneralSumOfProduced -= delivereds.CountOfDelivered;
+
+                GeneralSumOfProduced -= delivered.CountOfDelivered;
+
+                if (GeneralSumOfProduced < 0)
+                {
+                    return false;
+                }
+
+                DeliveredBrands.Add(delivered);
+                SaveChanges();
+                return true;
+            }
+            catch(Exception exc)
+            {
+                return false;
+            }
+        }
     }
 }

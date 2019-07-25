@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataLibrary
 {
-    public partial class Brands
+    public class Brands
     {
         public Brands()
         {
