@@ -10,15 +10,16 @@ namespace WebCore.Models
             TerminalsAndBrands = new HashSet<TerminalsAndBrands>();
         }
 
-        public Terminal(string Name)
+        public Terminal(string Name, int ProducedBrands)
         {
             this.Name = Name;
             Id = Settings.GenerateId();
+            this.ProducedBrands = 2;
         }
 
         public string Name { get; set; }
         public string Id { get; set; }
-        public int? ProducedBrands { get; set; } = 0;
+        public int? ProducedBrands { get; set; } 
 
         public virtual ICollection<TerminalsAndBrands> TerminalsAndBrands { get; set; }
     }
