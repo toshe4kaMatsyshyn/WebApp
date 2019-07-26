@@ -116,7 +116,7 @@ namespace WebCore.Models
         /// </summary>
         /// <param name="newBrand">Бренд, который пользователь хочет добавить</param>
         /// <returns>Удалось ли добавить новый бренд</returns>
-        public bool AddNewBrand(Brands newBrand)
+        /*public bool AddNewBrand(Brands newBrand)
         {
             try
             {
@@ -258,7 +258,7 @@ namespace WebCore.Models
             {
                 return brandsInTreminal;
             }
-        }
+        }*/
     }
 }
 
