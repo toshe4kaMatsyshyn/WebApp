@@ -241,10 +241,9 @@ namespace DataLibrary
         /// <returns>Список брендов</returns>
         public List<Brands> GetAllBrandsInTreminal(Terminal terminal)
         {
-            List<Brands> brandsInTreminal = null;
+            List<Brands> brandsInTreminal = new List<Brands>();
             try
             {
-                brandsInTreminal = new List<Brands>();
                 Entry(terminal).Collection("TerminalsAndBrands").Load();
                 foreach (TerminalsAndBrands tb in terminal.TerminalsAndBrands)
                 {
@@ -258,6 +257,43 @@ namespace DataLibrary
             {
                 return brandsInTreminal;
             }
+        }
+
+        /// <summary>
+        /// Получение всех производимых брендов, которые есть в определенном терминале
+        /// </summary>
+        /// <param name="terminal">Терминал, который нас интересует</param>
+        /// <returns>Список брендов</returns>
+        public List<ProducedBrands> GetAllProducedBrandsInTerminal(Terminal terminal)
+        {
+            List<ProducedBrands> producedBrandsInTerminal = new List<ProducedBrands>();
+            try
+            {
+                Entry(terminal).Collection("TerminalsAndBrands").Load();
+                foreach (TerminalsAndBrands tb in terminal.TerminalsAndBrands)
+                {
+                    Entry(tb).Reference("ProducedBrands").Load();
+                    producedBrandsInTerminal.Add(tb.ProducedBrands);
+                }
+                return producedBrandsInTerminal;
+            }
+            catch (Exception exc)
+            {
+                return producedBrandsInTerminal;
+            }
+        }
+
+        /// <summary>
+        /// Получение списка отсортированых терминалов по количеству производимых брендов
+        /// </summary>
+        /// <returns></returns>
+        public List<Terminal> GetSortedTerminals()
+        {
+            List<Terminal> terminals = new List<Terminal>();
+            foreach (Terminal terminal in Terminal)
+                terminals.Add(terminal);
+            terminals.Sort();
+            return terminals;
         }
     }
 }

@@ -17,10 +17,17 @@ namespace DataLibrary
                 foreach (Terminal terminal in context.Terminal)
                     if (terminal.Id.StartsWith("OSYIIJTXPC")) newTerminal = terminal;
 
-                List<Brands> brands = context.GetAllBrandsInTreminal(newTerminal);
+                //List<Brands> brands = context.GetAllProducedBrandsInTreminal(newTerminal);
 
-                foreach(Brands brand in brands)
-                    Console.WriteLine(brand.Name);
+                //foreach(Brands brand in brands)
+                //    Console.WriteLine(brand.Name);
+
+                List<ProducedBrands> producedBrands = context.GetAllProducedBrandsInTerminal(newTerminal);
+                foreach (ProducedBrands produced in producedBrands)
+                    context.Entry(produced).Reference("Brand").Load();
+
+               foreach (ProducedBrands produced in producedBrands)
+                    Console.WriteLine(produced.Brand.Name+"\t"+produced.CountOfProduced);
             }
             Console.ReadKey();
         }
