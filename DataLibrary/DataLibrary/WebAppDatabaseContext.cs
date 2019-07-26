@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -230,6 +231,32 @@ namespace DataLibrary
             {
                 Console.WriteLine(exc.Message);
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Получение всех брендов, которые есть в определенном терминале
+        /// </summary>
+        /// <param name="terminal">Терминал, который нас интересует</param>
+        /// <returns>Список брендов</returns>
+        public List<Brands> GetAllBrandsInTreminal(Terminal terminal)
+        {
+            List<Brands> brandsInTreminal = null;
+            try
+            {
+                brandsInTreminal = new List<Brands>();
+                Entry(terminal).Collection("TerminalsAndBrands").Load();
+                foreach (TerminalsAndBrands tb in terminal.TerminalsAndBrands)
+                {
+                    Entry(tb).Reference("ProducedBrands").Load();
+                    Entry(tb.ProducedBrands).Reference("Brand").Load();
+                    brandsInTreminal.Add(tb.ProducedBrands.Brand);
+                }
+                return brandsInTreminal;
+            }
+            catch(Exception exc)
+            {
+                return brandsInTreminal;
             }
         }
     }
