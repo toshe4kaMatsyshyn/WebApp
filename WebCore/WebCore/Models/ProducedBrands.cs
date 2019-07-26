@@ -9,6 +9,7 @@ namespace WebCore.Models
         {
             DeliveredBrands = new HashSet<DeliveredBrands>();
             TerminalsAndBrands = new HashSet<TerminalsAndBrands>();
+            Id = Settings.GenerateId();
         }
         public ProducedBrands(Brands brand, int? CountOfProduced) : this(brand, CountOfProduced, DateTime.Today)
         {

@@ -32,9 +32,9 @@ namespace WebCore.Controllers
 
             // GET api/users/5
             [HttpGet("{id}")]
-            public IActionResult Get(int id)
+            public IActionResult Get(string id)
             {
-                Brands brands = db.Brands.FirstOrDefault(x => int.Parse(x.Id) == id);
+                Brands brands = db.Brands.FirstOrDefault(x => x.Id == id);
                 if (brands == null)
                     return NotFound();
                 return new ObjectResult(brands);
@@ -74,9 +74,9 @@ namespace WebCore.Controllers
 
             // DELETE api/users/5
             [HttpDelete("{id}")]
-            public IActionResult Delete(int id)
+            public IActionResult Delete(string id)
             {
-                Brands brands = db.Brands.FirstOrDefault(x => int.Parse(x.Id) == id);
+                Brands brands = db.Brands.FirstOrDefault(x => x.Id == id);
                 if (brands == null)
                 {
                     return NotFound();
