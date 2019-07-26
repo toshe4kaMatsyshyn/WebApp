@@ -295,6 +295,30 @@ namespace DataLibrary
             terminals.Sort();
             return terminals;
         }
+
+        /// <summary>
+        /// Получение бренда, производимые в определенном году
+        /// </summary>
+        /// <param name="Year"></param>
+        /// <returns></returns>
+        public List<Brands> GetBrandsByYear(int Year)
+        {
+            List<Brands> brandsByYear = new List<Brands>();
+            try
+            {
+                foreach(ProducedBrands producedBrands in ProducedBrands)
+                    if(producedBrands.YearOfProduced.Value.Year == Year)
+                    {
+                        Entry(producedBrands).Reference("Brand").Load();
+                        brandsByYear.Add(producedBrands.Brand);
+                    }
+                return brandsByYear;
+            }
+            catch(Exception exc)
+            {
+                return brandsByYear;
+            }
+        }
     }
 }
 
