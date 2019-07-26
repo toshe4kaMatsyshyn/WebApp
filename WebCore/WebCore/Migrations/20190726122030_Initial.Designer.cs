@@ -10,7 +10,7 @@ using WebCore.Models;
 namespace WebCore.Migrations
 {
     [DbContext(typeof(WebAppDatabaseContext))]
-    [Migration("20190726104203_Initial")]
+    [Migration("20190726122030_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

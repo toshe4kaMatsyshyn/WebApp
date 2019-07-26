@@ -18,8 +18,8 @@ namespace WebCore.Controllers
             this.db = context;
             if (!db.Terminal.Any())
             {
-                db.Terminal.Add(new Terminal ( "Boryspol Term", 20));
-                db.Terminal.Add(new Terminal("Bogolybov Term", 20));
+                db.Terminal.Add(new Terminal ( "Boryspol Term"));
+                db.Terminal.Add(new Terminal("Bogolybov Term"));
                 db.SaveChanges();
             }
         }

@@ -25,7 +25,7 @@ namespace WebCore.Migrations
                 {
                     Name = table.Column<string>(maxLength: 30, nullable: true),
                     Id = table.Column<string>(maxLength: 10, nullable: false),
-                    ProducedBrands = table.Column<int>(nullable: true)
+                    ProducedBrands = table.Column<int>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
                 {
