@@ -9,14 +9,3 @@ C:\Users\Антон Мацишин\Documents\GitHub\WebApp\DataLibrary\DataLibra
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\DataLibrary\DataLibrary\bin\Debug\netcoreapp2.1\DataLibrary.pdb
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\DataLibrary\DataLibrary\obj\Debug\netcoreapp2.1\DataLibrary.dll
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\DataLibrary\DataLibrary\obj\Debug\netcoreapp2.1\DataLibrary.pdb
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\bin\Debug\netcoreapp2.1\DataLibrary.deps.json
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\bin\Debug\netcoreapp2.1\DataLibrary.runtimeconfig.json
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\bin\Debug\netcoreapp2.1\DataLibrary.runtimeconfig.dev.json
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\bin\Debug\netcoreapp2.1\DataLibrary.dll
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\bin\Debug\netcoreapp2.1\DataLibrary.pdb
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\obj\Debug\netcoreapp2.1\DataLibrary.csprojAssemblyReference.cache
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\obj\Debug\netcoreapp2.1\DataLibrary.csproj.CoreCompileInputs.cache
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\obj\Debug\netcoreapp2.1\DataLibrary.AssemblyInfoInputs.cache
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\obj\Debug\netcoreapp2.1\DataLibrary.AssemblyInfo.cs
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\obj\Debug\netcoreapp2.1\DataLibrary.dll
-C:\Users\Tima\Documents\GitHub\WebApp\DataLibrary\DataLibrary\obj\Debug\netcoreapp2.1\DataLibrary.pdb
