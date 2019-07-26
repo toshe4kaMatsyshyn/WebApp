@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataLibrary
+namespace WebCore.Models
 {
     public partial class ProducedBrands
     {

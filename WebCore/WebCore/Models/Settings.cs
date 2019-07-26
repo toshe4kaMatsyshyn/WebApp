@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataLibrary
+namespace WebCore.Models
 {
     /// <summary>
     /// Статический класс в котором собраны методы, необходимые для всех сущностей
