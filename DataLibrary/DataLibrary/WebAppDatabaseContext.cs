@@ -297,7 +297,7 @@ namespace DataLibrary
         }
 
         /// <summary>
-        /// Получение бренда, производимые в определенном году
+        /// Получение бренды, производимые в определенном году
         /// </summary>
         /// <param name="Year"></param>
         /// <returns></returns>
@@ -317,6 +317,30 @@ namespace DataLibrary
             catch(Exception exc)
             {
                 return brandsByYear;
+            }
+        }
+
+        /// <summary>
+        /// Получить все бренды, которые есть в производстве
+        /// (Может быть такое, что бренд есть, но на него не ссылается производимый бренд)
+        /// </summary>
+        /// <returns></returns>
+        public List<Brands> GetAllProducedBrands()
+        {
+            List<Brands> producedBrands = new List<Brands>();
+            try
+            {
+                foreach(Brands brand in Brands)
+                {
+                    Entry(brand).Collection("ProducedBrands").Load();
+                    if (brand.ProducedBrands.Count != 0) producedBrands.Add(brand);
+                }
+                return producedBrands;
+
+            }
+            catch(Exception exc)
+            {
+                return producedBrands;
             }
         }
     }
