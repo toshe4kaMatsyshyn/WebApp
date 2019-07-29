@@ -297,7 +297,7 @@ namespace DataLibrary
         }
 
         /// <summary>
-        /// Получение бренды, производимые в определенном году
+        /// Получение брендов, производимых в определенном году
         /// </summary>
         /// <param name="Year"></param>
         /// <returns></returns>
@@ -343,6 +343,7 @@ namespace DataLibrary
                 return producedBrands;
             }
         }
+        
     }
 }
 

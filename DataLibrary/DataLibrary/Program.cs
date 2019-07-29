@@ -29,8 +29,8 @@ namespace DataLibrary
                 //foreach (ProducedBrands produced in producedBrands)
                 //     Console.WriteLine(produced.Brand.Name+"\t"+produced.CountOfProduced);
 
-
-                List<Brands> brands = context.GetBrandsByYear(1924);
+                
+                List<Brands> brands = context.GetAllProducedBrands();
                 foreach(Brands brand in brands)
                     Console.WriteLine(brand.Name);
 
