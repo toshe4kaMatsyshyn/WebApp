@@ -21,8 +21,19 @@ namespace MobileApp.Views
             InitializeComponent();
 
             BindingContext = viewModel = new BrandsViewModel();
-			
-			MyListView.ItemsSource = viewModel.Brands;
+
+            MyListView.ItemsSource = viewModel.Brands;
+
+            SearchBar.SearchButtonPressed += FilterBrands;
+        }
+
+        void FilterBrands(object sender, EventArgs eventArgs)
+        {
+            string Text = SearchBar.Text;
+            if(!string.IsNullOrEmpty(Text))
+            {
+                //Фильтрация выборки
+            }
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
