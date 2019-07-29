@@ -24,7 +24,7 @@ namespace MobileApp.Views
 
             MyListView.ItemsSource = viewModel.Brands;
 
-            SearchBar.SearchButtonPressed += FilterBrands;
+            SearchBar.TextChanged += FilterBrands;
         }
 
         void FilterBrands(object sender, EventArgs eventArgs)
@@ -33,6 +33,10 @@ namespace MobileApp.Views
             if(!string.IsNullOrEmpty(Text))
             {
                 //Фильтрация выборки
+            }
+            else
+            {
+                MyListView.ItemsSource = viewModel.Brands;
             }
         }
 
