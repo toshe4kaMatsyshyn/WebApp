@@ -4,9 +4,14 @@
              x:Class="MobileApp.Views.BrandsPage"
              Title="{Binding Title}">
 
+
     <StackLayout>
         <SearchBar x:Name="SearchBar">
         </SearchBar>
+        <Switch x:Name="Switch"
+                OnColor="#2196F3">
+            
+        </Switch>
         <ListView x:Name="MyListView"
             ItemsSource="{Binding Brands}"
             ItemTapped="Handle_ItemTapped"
@@ -19,7 +24,7 @@
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
-                            
+
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

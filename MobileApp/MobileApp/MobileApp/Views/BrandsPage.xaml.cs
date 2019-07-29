@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,19 +15,32 @@ namespace MobileApp.Views
     public partial class BrandsPage : ContentPage
     {
         BrandsViewModel viewModel;
-
+        
         public BrandsPage()
         {
             InitializeComponent();
 
             BindingContext = viewModel = new BrandsViewModel();
-
             MyListView.ItemsSource = viewModel.Brands;
 
-            SearchBar.TextChanged += FilterBrands;
+            SearchBar.TextChanged += FilterBrandsBySearchBar;
+            Switch.Toggled += FilterBrandsBySwitch;
+            //IsTogged
         }
 
-        void FilterBrands(object sender, EventArgs eventArgs)
+        void FilterBrandsBySwitch(object sender, EventArgs eventArgs)
+        {
+            if(Switch.IsToggled)
+            {
+                MyListView.ItemsSource = new List<Models.Brands>();
+            }
+            else
+            {
+                MyListView.ItemsSource = viewModel.Brands;
+            }
+        }
+
+        void FilterBrandsBySearchBar(object sender, EventArgs eventArgs)
         {
             string Text = SearchBar.Text;
             if(!string.IsNullOrEmpty(Text))
