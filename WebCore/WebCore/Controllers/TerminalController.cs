@@ -19,7 +19,7 @@ namespace WebCore.Controllers
             if (!db.Terminal.Any())
             {
                 db.Terminal.Add(new Terminal ( "Boryspol Term"));
-                db.Terminal.Add(new Terminal("Bogolybov Term"));
+                db.Terminal.Add(new Terminal("Arr Term"));
                 db.SaveChanges();
             }
         }

@@ -14,12 +14,12 @@ namespace WebCore.Models
         {
             this.Name = Name;
             Id = Settings.GenerateId();
-            this.ProducedBrands = 2;
+            ProducedBrands = 20;
         }
 
         public string Name { get; set; }
         public string Id { get; set; }
-        public int? ProducedBrands { get; set; } 
+        public int? ProducedBrands { get; set; }
 
         public virtual ICollection<TerminalsAndBrands> TerminalsAndBrands { get; set; }
     }

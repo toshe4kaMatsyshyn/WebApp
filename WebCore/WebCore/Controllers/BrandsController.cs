@@ -30,7 +30,7 @@ namespace WebCore.Controllers
                 return db.Brands.ToList();
             }
 
-            // GET api/users/5
+            // GET api/brands/5
             [HttpGet("{id}")]
             public IActionResult Get(string id)
             {
@@ -40,7 +40,7 @@ namespace WebCore.Controllers
                 return new ObjectResult(brands);
             }
 
-            // POST api/users
+            // POST api/brands
             [HttpPost]
             public IActionResult Post([FromBody]Brands brands)
             {
@@ -54,7 +54,7 @@ namespace WebCore.Controllers
                 return Ok(brands);
             }
 
-            // PUT api/users/
+            // PUT api/brands/
             [HttpPut]
             public IActionResult Put([FromBody]Brands brands)
             {
@@ -72,7 +72,7 @@ namespace WebCore.Controllers
                 return Ok(brands);
             }
 
-            // DELETE api/users/5
+            // DELETE api/brands/5
             [HttpDelete("{id}")]
             public IActionResult Delete(string id)
             {
