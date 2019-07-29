@@ -40,9 +40,9 @@ namespace WebCore.Controllers
                 return new ObjectResult(brands);
             }
 
-            // POST api/brands
-            [HttpPost]
-            public IActionResult Post([FromBody]Brands brands)
+        // POST api/brands
+        [HttpPost]
+            public IActionResult Post(Brands brands)
             {
                 if (brands == null)
                 {
@@ -54,9 +54,9 @@ namespace WebCore.Controllers
                 return Ok(brands);
             }
 
-            // PUT api/brands/
-            [HttpPut]
-            public IActionResult Put([FromBody]Brands brands)
+        // PUT api/brands/
+        [HttpPut]
+            public IActionResult Put(Brands brands)
             {
                 if (brands == null)
                 {
@@ -72,8 +72,8 @@ namespace WebCore.Controllers
                 return Ok(brands);
             }
 
-            // DELETE api/brands/5
-            [HttpDelete("{id}")]
+        // DELETE api/brands/5
+        [HttpDelete("{id}")]
             public IActionResult Delete(string id)
             {
                 Brands brands = db.Brands.FirstOrDefault(x => x.Id == id);

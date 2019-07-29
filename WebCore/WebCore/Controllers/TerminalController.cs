@@ -15,11 +15,12 @@ namespace WebCore.Controllers
         WebAppDatabaseContext db;
         public TerminalController(WebAppDatabaseContext context)
         {
+            
             this.db = context;
             if (!db.Terminal.Any())
             {
-                db.Terminal.Add(new Terminal ( "Boryspol Term"));
-                db.Terminal.Add(new Terminal("Arr Term"));
+                db.Terminal.Add(new Terminal ( "Boryspol Term", 20));
+                db.Terminal.Add(new Terminal("Bgolybov Term", 2));
                 db.SaveChanges();
             }
         }
@@ -30,7 +31,7 @@ namespace WebCore.Controllers
             return db.Terminal.ToList();
         }
 
-        // GET api/users/5
+        // GET api/terminal/5
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
@@ -40,9 +41,9 @@ namespace WebCore.Controllers
             return new ObjectResult(terminal);
         }
 
-        // POST api/users
+        // POST api/terminal
         [HttpPost]
-        public IActionResult Post([FromBody]Terminal terminal)
+        public IActionResult Post(Terminal terminal)
         {
             if (terminal == null)
             {
@@ -54,9 +55,9 @@ namespace WebCore.Controllers
             return Ok(terminal);
         }
 
-        // PUT api/users/
+        // PUT api/terminal/
         [HttpPut]
-        public IActionResult Put([FromBody]Terminal terminal)
+        public IActionResult Put(Terminal terminal)
         {
             if (terminal == null)
             {
@@ -72,7 +73,7 @@ namespace WebCore.Controllers
             return Ok(terminal);
         }
 
-        // DELETE api/users/5
+        // DELETE api/terminal/5
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
