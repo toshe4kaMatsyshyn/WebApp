@@ -13,7 +13,7 @@ namespace MobileApp.ViewModels
         {
             Title = terminal?.Name;
             Terminal = terminal;
-            Brands = Services.Settings.GetBrands();
+            Brands = new List<Brands>();
         }
     }
 }

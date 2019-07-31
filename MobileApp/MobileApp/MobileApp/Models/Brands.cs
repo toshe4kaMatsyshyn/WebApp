@@ -19,7 +19,7 @@ namespace MobileApp.Models
         public string Id { get; set; }
         public string Name { get; set; }
 
-        public int CountOfProduced { get; set; } = 8;
+        public int CountOfProduced { get; set; }
         public virtual ICollection<ProducedBrands> ProducedBrands { get; set; }
     }
 }
