@@ -15,7 +15,6 @@ namespace MobileApp.Views
     public partial class BrandsPage : ContentPage
     {
         BrandsViewModel viewModel;
-        
         public BrandsPage()
         {
             InitializeComponent();
@@ -23,33 +22,34 @@ namespace MobileApp.Views
             BindingContext = viewModel = new BrandsViewModel();
             MyListView.ItemsSource = viewModel.Brands;
 
-            SearchBar.TextChanged += FilterBrandsBySearchBar;
-            Switch.Toggled += FilterBrandsBySwitch;
-            //IsTogged
+            SearchBar.TextChanged += FilterTheList;
+            Switch.Toggled += FilterTheList;
         }
 
-        void FilterBrandsBySwitch(object sender, EventArgs eventArgs)
-        {
-            if(Switch.IsToggled)
-            {
-                MyListView.ItemsSource = new List<Models.Brands>();
-            }
-            else
-            {
-                MyListView.ItemsSource = viewModel.Brands;
-            }
-        }
-
-        void FilterBrandsBySearchBar(object sender, EventArgs eventArgs)
+        void FilterTheList(object sender, EventArgs eventArgs)
         {
             string Text = SearchBar.Text;
             if(!string.IsNullOrEmpty(Text))
             {
-                //Фильтрация выборки
+                if(Switch.IsToggled)
+                {
+                    //MyListView.ItemsSource = viewModel.Brands.Where(B => B.Name.Length > 4).Where(b => b.Name.Contains(Text));
+                }
+                else
+                {
+                    //MyListView.ItemsSource = viewModel.Brands.Where(b => b.Name.Contains(Text));
+                }
             }
             else
             {
-                MyListView.ItemsSource = viewModel.Brands;
+                if (Switch.IsToggled)
+                {
+                    //MyListView.ItemsSource = viewModel.Brands.Where(b => b.Name.Length > 4);//Where(u => u.Name.Length > 4);
+                }
+                else
+                {
+                    //MyListView.ItemsSource = viewModel.Brands;
+                }
             }
         }
 

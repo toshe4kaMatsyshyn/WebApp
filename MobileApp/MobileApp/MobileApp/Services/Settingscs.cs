@@ -23,10 +23,11 @@ namespace MobileApp.Services
         {
             List<Brands> brands = new List<Brands>
             {
-                new Brands("ferari"),
-                new Brands("lada"),
-                new Brands("mercedes"),
-                new Brands("bmw")
+                new Brands("Ferari"),
+                new Brands("Lada"),
+                new Brands("Mercedes"),
+                new Brands("Bmw"),
+                new Brands("KIA")
             };
             return Brands=brands;
         }

@@ -14,7 +14,7 @@ namespace MobileApp.ViewModels
         public BrandsViewModel()
         {
             Title = "Brands";
-            Brands = Settings.GetBrands();
+            Brands = new List<Brands>();
         }
     }
 }
