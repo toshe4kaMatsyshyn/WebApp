@@ -14,11 +14,11 @@ using MobileApp.ViewModels;
 namespace MobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemsPage : ContentPage
+    public partial class TerminalsPage : ContentPage
     {
         TerminalsViewModel viewModel;
 
-        public ItemsPage()
+        public TerminalsPage()
         {
             InitializeComponent();
 
@@ -27,11 +27,11 @@ namespace MobileApp.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
-            if (item == null)
+            var terminal = args.SelectedItem as Terminal;
+            if (terminal == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ItemDetailPage(new TerminalDetailViewModel(terminal)));
 
             // Manually deselect item.
             TerminalsListView.SelectedItem = null;

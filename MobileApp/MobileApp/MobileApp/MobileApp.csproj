@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\TerminalDetailPage.xaml.cs">
+      <DependentUpon>TerminalDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TerminalsPage.xaml.cs">
       <DependentUpon>TerminalsPage.xaml</DependentUpon>
     </Compile>

@@ -27,7 +27,7 @@ namespace MobileApp.Views
                 switch (id)
                 {
                     case (int)MenuItemType.Treminal:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        MenuPages.Add(id, new NavigationPage(new TerminalsPage()));
                         break;
                     case (int)MenuItemType.Brands:
                         MenuPages.Add(id, new NavigationPage(new BrandsPage()));

@@ -8,13 +8,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MobileApp.Views.TerminalsPage.xaml", "Views/TerminalsPage.xaml", typeof(global::MobileApp.Views.ItemsPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MobileApp.Views.TerminalsPage.xaml", "Views/TerminalsPage.xaml", typeof(global::MobileApp.Views.TerminalsPage))]
 
 namespace MobileApp.Views {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\TerminalsPage.xaml")]
-    public partial class ItemsPage : global::Xamarin.Forms.ContentPage {
+    public partial class TerminalsPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private global::Xamarin.Forms.ContentPage BrowseItemsPage;
@@ -24,7 +24,7 @@ namespace MobileApp.Views {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(ItemsPage));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(TerminalsPage));
             BrowseItemsPage = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ContentPage>(this, "BrowseItemsPage");
             TerminalsListView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "TerminalsListView");
         }
