@@ -31,7 +31,7 @@ namespace MobileApp.Views
             if (terminal == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new TerminalDetailViewModel(terminal)));
+            await Navigation.PushAsync(new TerminalDetailPage(new TerminalDetailViewModel(terminal)));
 
             // Manually deselect item.
             TerminalsListView.SelectedItem = null;

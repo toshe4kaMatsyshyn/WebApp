@@ -33,12 +33,13 @@ namespace MobileApp.ViewModels
 
         async Task ExecuteLoadItemsCommand()
         {
-            string url = "http://localhost:44372/api/terminal";
+            string url = "https://localhost:5001/api/terminal";
             try
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(url);
                 var response = await client.GetAsync(client.BaseAddress);
+                System.Threading.Thread.Sleep(1000);
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadAsStringAsync();

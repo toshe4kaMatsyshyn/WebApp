@@ -9,11 +9,11 @@ using MobileApp.ViewModels;
 namespace MobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemDetailPage : ContentPage
+    public partial class TerminalDetailPage : ContentPage
     {
         TerminalDetailViewModel viewModel;
 
-        public ItemDetailPage(TerminalDetailViewModel viewModel)
+        public TerminalDetailPage(TerminalDetailViewModel viewModel)
         {
             InitializeComponent();
 
@@ -22,7 +22,7 @@ namespace MobileApp.Views
             BrandsListView.ItemsSource = viewModel.Brands;
         }
 
-        public ItemDetailPage()
+        public TerminalDetailPage()
         {
             InitializeComponent();
 

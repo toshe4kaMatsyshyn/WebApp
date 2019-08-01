@@ -8,20 +8,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MobileApp.Views.TerminalDetailPage.xaml", "Views/TerminalDetailPage.xaml", typeof(global::MobileApp.Views.ItemDetailPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MobileApp.Views.TerminalDetailPage.xaml", "Views/TerminalDetailPage.xaml", typeof(global::MobileApp.Views.TerminalDetailPage))]
 
 namespace MobileApp.Views {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\TerminalDetailPage.xaml")]
-    public partial class ItemDetailPage : global::Xamarin.Forms.ContentPage {
+    public partial class TerminalDetailPage : global::Xamarin.Forms.ContentPage {
         
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.ListView BrandsListView;
         
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(ItemDetailPage));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(TerminalDetailPage));
             BrandsListView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "BrandsListView");
         }
     }
