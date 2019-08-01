@@ -103,4 +103,3 @@ C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\M
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\Xamarin.Forms.Core.pdb
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\Xamarin.Forms.Platform.Android.pdb
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\Xamarin.Forms.Xaml.pdb
-C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\linksrc\MobileApp.dll.mdb
