@@ -49,26 +49,26 @@
         // Получение одного пользователя
         function GetUser(id) {
             $.ajax({
-                url: '/api/users/'+id,
+                url: '/api/terminal/'+id,
                 type: 'GET',
                 contentType: "application/json",
-                success: function (user) {
+                success: function (terminal) {
                     var form = document.forms["userForm"];
-                    form.elements["id"].value = user.id;
-                    form.elements["name"].value = user.name;
-                    form.elements["age"].value = user.age;
+                    form.elements["id"].value = terminal.id;
+                    form.elements["name"].value = terminal.name;
+                    form.elements["producedBrands"].value = terminal.producedBrands;
                 }
             });
         }
         // Добавление пользователя
         function CreateUser(userName, userAge) {
             $.ajax({
-                url: "api/users",
+                url: "api/terminals",
                 contentType: "application/json",
                 method: "POST",
                 data: JSON.stringify({
                     name: userName,
-                    age: userAge
+                    age: userAge, 
                 }),
                 success: function (user) {
                     reset();
