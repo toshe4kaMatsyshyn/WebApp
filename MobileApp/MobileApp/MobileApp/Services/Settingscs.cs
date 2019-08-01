@@ -21,14 +21,17 @@ namespace MobileApp.Services
 
         public static List<Brands> GetBrands()
         {
+            Random rnd = new Random();
             List<Brands> brands = new List<Brands>
             {
-                new Brands("Ferari"),
+                new Brands("Ferrari"),
                 new Brands("Lada"),
                 new Brands("Mercedes"),
                 new Brands("Bmw"),
                 new Brands("KIA")
             };
+            foreach (Brands brand in brands)
+                brand.CountOfProduced = rnd.Next(100);
             return Brands=brands;
         }
         public static List<Terminal> GetTerminals()

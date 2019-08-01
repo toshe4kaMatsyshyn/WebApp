@@ -33,35 +33,24 @@ namespace MobileApp.Views
             {
                 if(Switch.IsToggled)
                 {
-                    //MyListView.ItemsSource = viewModel.Brands.Where(B => B.Name.Length > 4).Where(b => b.Name.Contains(Text));
+                    MyListView.ItemsSource = viewModel.Brands.Where(B => B.Name.Length > 4).Where(b => b.Name.Contains(Text));
                 }
                 else
                 {
-                    //MyListView.ItemsSource = viewModel.Brands.Where(b => b.Name.Contains(Text));
+                    MyListView.ItemsSource = viewModel.Brands.Where(b => b.Name.Contains(Text));
                 }
             }
             else
             {
                 if (Switch.IsToggled)
                 {
-                    //MyListView.ItemsSource = viewModel.Brands.Where(b => b.Name.Length > 4);//Where(u => u.Name.Length > 4);
+                    MyListView.ItemsSource = viewModel.Brands.Where(b => b.Name.Length > 4);//Where(u => u.Name.Length > 4);
                 }
                 else
                 {
-                    //MyListView.ItemsSource = viewModel.Brands;
+                    MyListView.ItemsSource = viewModel.Brands;
                 }
             }
-        }
-
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (e.Item == null)
-                return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
         }
     }
 }

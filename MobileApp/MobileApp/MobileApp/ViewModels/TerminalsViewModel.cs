@@ -1,8 +1,14 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.ComponentModel;
+using System.Net.Http;
+using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -15,35 +21,39 @@ namespace MobileApp.ViewModels
     public class TerminalsViewModel : BaseViewModel
     {
         public List<Terminal> Terminals { get; set; }
-        public Command LoadTerminalsCommand { get; set; }
+        public Command LoadItemsCommand { get; set; }
 
         public TerminalsViewModel()
         {
             Title = "Terminals";
             Terminals = new List<Terminal>();
-            LoadTerminalsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            //LoadItemsCommand.Execute(new object());
         }
 
         async Task ExecuteLoadItemsCommand()
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
+            string url = "http://localhost:44372/api/terminal";
             try
             {
-                Terminals.Clear();
-                Terminals = Settings.GetTerminals();
-                var items = await DataStore.GetItemsAsync(true);
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = await client.GetAsync(client.BaseAddress);
+                response.EnsureSuccessStatusCode();
+
+                var content = await response.Content.ReadAsStringAsync();
+                JObject o = JObject.Parse(content);
+
+                var str = o.SelectToken(@"$");
+                var terminals = JsonConvert.DeserializeObject<List<Terminal>>(str.ToString());
+
+                Terminals = terminals;
+                
             }
-            catch (Exception ex)
+            catch(Exception exc)
             {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
+                Console.WriteLine(exc.Message);
+                
             }
         }
     }

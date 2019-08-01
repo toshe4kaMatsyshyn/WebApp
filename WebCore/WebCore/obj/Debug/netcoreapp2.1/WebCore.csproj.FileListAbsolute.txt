@@ -1,0 +1,14 @@
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\bin\Debug\netcoreapp2.1\WebCore.deps.json
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\bin\Debug\netcoreapp2.1\WebCore.runtimeconfig.json
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\bin\Debug\netcoreapp2.1\WebCore.runtimeconfig.dev.json
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\bin\Debug\netcoreapp2.1\WebCore.dll
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\bin\Debug\netcoreapp2.1\WebCore.pdb
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\obj\Debug\netcoreapp2.1\WebCore.csprojAssemblyReference.cache
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\obj\Debug\netcoreapp2.1\WebCore.csproj.CoreCompileInputs.cache
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\obj\Debug\netcoreapp2.1\WebCore.RazorAssemblyInfo.cache
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\obj\Debug\netcoreapp2.1\WebCore.RazorAssemblyInfo.cs
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\obj\Debug\netcoreapp2.1\WebCore.AssemblyInfoInputs.cache
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\obj\Debug\netcoreapp2.1\WebCore.AssemblyInfo.cs
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\obj\Debug\netcoreapp2.1\WebCore.RazorTargetAssemblyInfo.cache
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\obj\Debug\netcoreapp2.1\WebCore.dll
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\WebCore\WebCore\obj\Debug\netcoreapp2.1\WebCore.pdb

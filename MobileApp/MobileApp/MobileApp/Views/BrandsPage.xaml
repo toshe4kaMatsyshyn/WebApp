@@ -17,7 +17,6 @@
         </StackLayout>
         <ListView x:Name="MyListView"
             ItemsSource="{Binding Brands}"
-            ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
             Margin="0,20,0,0">
             <ListView.ItemTemplate>

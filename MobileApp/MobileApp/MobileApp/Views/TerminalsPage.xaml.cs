@@ -44,7 +44,7 @@ namespace MobileApp.Views
             base.OnAppearing();
 
             if (viewModel.Terminals.Count == 0)
-                viewModel.LoadTerminalsCommand.Execute(null);
+                viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }

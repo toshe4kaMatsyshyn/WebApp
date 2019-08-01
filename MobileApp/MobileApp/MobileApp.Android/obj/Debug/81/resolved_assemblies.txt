@@ -4,6 +4,7 @@ C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\M
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\MobileApp.dll
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\Mono.Android.dll
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\mscorlib.dll
+C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\Newtonsoft.Json.dll
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\System.Core.dll
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\System.dll
 C:\Users\Антон Мацишин\Documents\GitHub\WebApp\MobileApp\MobileApp\MobileApp.Android\obj\Debug\81\android\assets\System.Xml.dll

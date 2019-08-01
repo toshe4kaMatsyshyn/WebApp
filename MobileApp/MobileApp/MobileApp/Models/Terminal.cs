@@ -18,6 +18,7 @@ namespace MobileApp.Models
         public string Name { get; set; }
         public string Id { get; set; }
         public int? ProducedBrands { get; set; } = 0;
+        public virtual ICollection<TerminalsAndBrands> TerminalsAndBrands { get; set; }
 
         public int CompareTo(object obj)
         {

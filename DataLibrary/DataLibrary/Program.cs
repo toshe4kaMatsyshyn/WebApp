@@ -29,10 +29,9 @@ namespace DataLibrary
                 //foreach (ProducedBrands produced in producedBrands)
                 //     Console.WriteLine(produced.Brand.Name+"\t"+produced.CountOfProduced);
 
-                
-                List<Brands> brands = context.GetAllProducedBrands();
-                foreach(Brands brand in brands)
-                    Console.WriteLine(brand.Name);
+
+                foreach(Terminal terminal in context.Terminal)
+                    Console.WriteLine(terminal.Name);
 
                 
             }
