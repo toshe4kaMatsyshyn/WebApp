@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2.1" />
@@ -92,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MobileApp\MobileApp.csproj">
-      <Project>{EE2DA126-1AAA-4BBA-8DB1-3752337DCF5F}</Project>
+      <Project>{3FF2529B-8D38-42DB-BF8C-09654DF17D2F}</Project>
       <Name>MobileApp</Name>
     </ProjectReference>
   </ItemGroup>

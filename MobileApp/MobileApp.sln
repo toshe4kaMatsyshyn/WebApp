@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApp.Android", "MobileApp\MobileApp.Android\MobileApp.Android.csproj", "{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApp", "MobileApp\MobileApp\MobileApp.csproj", "{048851C7-1A88-4EC0-8918-38BB00F0E307}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApp", "MobileApp\MobileApp\MobileApp.csproj", "{43795670-2D89-4AC5-9769-F23DE8A7EB22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,17 +19,17 @@ Global
 		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{048851C7-1A88-4EC0-8918-38BB00F0E307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{048851C7-1A88-4EC0-8918-38BB00F0E307}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{048851C7-1A88-4EC0-8918-38BB00F0E307}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{048851C7-1A88-4EC0-8918-38BB00F0E307}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{048851C7-1A88-4EC0-8918-38BB00F0E307}.Release|Any CPU.Build.0 = Release|Any CPU
-		{048851C7-1A88-4EC0-8918-38BB00F0E307}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{43795670-2D89-4AC5-9769-F23DE8A7EB22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43795670-2D89-4AC5-9769-F23DE8A7EB22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43795670-2D89-4AC5-9769-F23DE8A7EB22}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{43795670-2D89-4AC5-9769-F23DE8A7EB22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43795670-2D89-4AC5-9769-F23DE8A7EB22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43795670-2D89-4AC5-9769-F23DE8A7EB22}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D7C06DE1-E8EA-435C-A884-8BB11D9FE5F9}
+		SolutionGuid = {49EEDCF2-FB17-437A-B437-712E0F51E69B}
 	EndGlobalSection
 EndGlobal
