@@ -28,18 +28,42 @@ namespace MobileApp.ViewModels
             Title = "Terminals";
             Terminals = new List<Terminal>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            //LoadItemsCommand.Execute(new object());
+            //LoadTerminals();
         }
 
-        async Task ExecuteLoadItemsCommand()
+
+        async void LoadTerminals()
         {
-            string url = "https://localhost:5001/api/terminal";
+            string url = "http://localhost:2607/api/terminal";
             try
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(url);
                 var response = await client.GetAsync(client.BaseAddress);
-                System.Threading.Thread.Sleep(1000);
+                response.EnsureSuccessStatusCode();
+
+                var content = await response.Content.ReadAsStringAsync();
+                JObject o = JObject.Parse(content);
+
+                var str = o.SelectToken(@"$");
+                var terminals = JsonConvert.DeserializeObject<List<Terminal>>(str.ToString());
+
+                Terminals = terminals;
+
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+        }
+        async Task ExecuteLoadItemsCommand()
+        {
+            string url = "http://192.168.1.105:2607/api/terminal";
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = await client.GetAsync(client.BaseAddress);
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadAsStringAsync();
