@@ -16,14 +16,14 @@
             <Switch x:Name="Switch"   Margin="90,0,0,0"/>
         </StackLayout>
         <ListView x:Name="MyListView"
-            ItemsSource="{Binding Brands}"
             CachingStrategy="RecycleElement"
             Margin="0,20,0,0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding Name}" 
+                            <Label
+                                Text="{Binding Name}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />

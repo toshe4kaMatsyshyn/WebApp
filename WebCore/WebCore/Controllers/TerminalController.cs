@@ -43,7 +43,7 @@ namespace WebCore.Controllers
 
         // POST api/terminal
         [HttpPost]
-        public IActionResult Post(Terminal terminal)
+        public IActionResult Post([FromBody]Terminal terminal)
         {
             if (terminal == null)
             {
@@ -57,7 +57,7 @@ namespace WebCore.Controllers
 
         // PUT api/terminal/
         [HttpPut]
-        public IActionResult Put(Terminal terminal)
+        public IActionResult Put([FromBody]Terminal terminal)
         {
             if (terminal == null)
             {

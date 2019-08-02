@@ -20,21 +20,23 @@ namespace MobileApp.ViewModels
 {
     public class TerminalsViewModel : BaseViewModel
     {
-        public List<Terminal> Terminals { get; set; }
+
+        public ObservableCollection<Terminal> Terminals { get; set; }
         public Command LoadItemsCommand { get; set; }
+
+        WorkWithServer work = new WorkWithServer();
 
         public TerminalsViewModel()
         {
             Title = "Terminals";
-            Terminals = new List<Terminal>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            //LoadTerminals();
+            Terminals = work.GetTerminals();
+            LoadItemsCommand = new Command(() => LoadTerminals());
         }
 
 
         async void LoadTerminals()
         {
-            string url = "http://localhost:2607/api/terminal";
+            string url = "http://192.168.1.105:2627/api/terminal";
             try
             {
                 HttpClient client = new HttpClient();
@@ -43,13 +45,11 @@ namespace MobileApp.ViewModels
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadAsStringAsync();
-                JObject o = JObject.Parse(content);
+                JArray jArray = JArray.Parse(content);
 
-                var str = o.SelectToken(@"$");
-                var terminals = JsonConvert.DeserializeObject<List<Terminal>>(str.ToString());
-
-                Terminals = terminals;
-
+                Terminals = JsonConvert.DeserializeObject<ObservableCollection<Terminal>>(jArray.ToString());
+                
+                Console.WriteLine(Terminals.Count);
             }
             catch (Exception exc)
             {
@@ -58,7 +58,7 @@ namespace MobileApp.ViewModels
         }
         async Task ExecuteLoadItemsCommand()
         {
-            string url = "http://192.168.1.105:2607/api/terminal";
+            string url = "http://192.168.1.105:2627/api/terminal";
             try
             {
                 HttpClient client = new HttpClient();
@@ -67,12 +67,10 @@ namespace MobileApp.ViewModels
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadAsStringAsync();
-                JObject o = JObject.Parse(content);
-
-                var str = o.SelectToken(@"$");
-                var terminals = JsonConvert.DeserializeObject<List<Terminal>>(str.ToString());
-
-                Terminals = terminals;
+                JArray jArray = JArray.Parse(content);
+              
+                var terminals = JsonConvert.DeserializeObject<List<Terminal>>(jArray.ToString());
+                //Terminals = terminals;
                 
             }
             catch(Exception exc)

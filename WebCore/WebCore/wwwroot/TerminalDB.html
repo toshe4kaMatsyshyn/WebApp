@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="age">ProducedBrands:</label>
-            <input class="form-control" name="produced" />
+            <input class="form-control" name="producedBrands" />
         </div>
         <div class="panel-body">
             <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
@@ -49,43 +49,42 @@
         // Получение одного пользователя
         function GetUser(id) {
             $.ajax({
-                url: '/api/users/'+id,
+                url: '/api/terminal/'+id,
                 type: 'GET',
                 contentType: "application/json",
-                success: function (user) {
+                success: function (terminal) {
                     var form = document.forms["userForm"];
-                    form.elements["id"].value = user.id;
-                    form.elements["name"].value = user.name;
-                    form.elements["age"].value = user.age;
+                    form.elements["id"].value = terminal.id;
+                    form.elements["name"].value = terminal.name;
+                    form.elements["producedBrands"].value = terminal.producedBrands;
                 }
             });
         }
         // Добавление пользователя
-        function CreateUser(userName, userAge) {
+        function CreateUser(Name, producedBrands) {
             $.ajax({
-                url: "api/users",
+                url: "api/terminal",
                 contentType: "application/json",
                 method: "POST",
                 data: JSON.stringify({
-                    name: userName,
-                    age: userAge
+                    name: Name,
+                    producedBrands: producedBrands, 
                 }),
-                success: function (user) {
+                success: function (terminal) {
                     reset();
-                    $("table tbody").append(row(user));
+                    $("table tbody").append(row(terminal));
                 }
             })
         }
         // Изменение пользователя
-        function EditUser(userId, userName, userAge) {
+        function EditUser(userId, userName) {
             $.ajax({
-                url: "api/users",
+                url: "api/terminal",
                 contentType: "application/json",
                 method: "PUT",
                 data: JSON.stringify({
                     id: userId,
-                    name: userName,
-                    age: userAge
+                    name: userName
                 }),
                 success: function (user) {
                     reset();
@@ -104,7 +103,7 @@
         // Удаление пользователя
         function DeleteUser(id) {
             $.ajax({
-                url: "api/users/"+id,
+                url: "api/terminal/"+id,
                 contentType: "application/json",
                 method: "DELETE",
                 success: function (user) {
@@ -115,7 +114,7 @@
         // создание строки для таблицы
         var row = function (user) {
             return "<tr data-rowid='" + user.id + "'><td>" + user.id + "</td>" +
-                   "<td>" + user.name + "</td> <td>" + user.age + "</td>" +
+                   "<td>" + user.name + "</td> <td>" + user.producedBrands + "</td>" +
                    "<td><a class='editLink' data-id='" + user.id + "'>Изменить</a> | " +
                     "<a class='removeLink' data-id='" + user.id + "'>Удалить</a></td></tr>";
         }
@@ -129,13 +128,14 @@
         // отправка формы
         $("form").submit(function (e) {
             e.preventDefault();
+           
             var id = this.elements["id"].value;
+            console.log(id);
             var name = this.elements["name"].value;
-            var age = this.elements["age"].value;
             if (id == 0)
-                CreateUser(name, age);
+                CreateUser(name, producedBrands);
             else
-                EditUser(id, name, age);
+                EditUser(id, name);
         });
 
         // нажимаем на ссылку Изменить

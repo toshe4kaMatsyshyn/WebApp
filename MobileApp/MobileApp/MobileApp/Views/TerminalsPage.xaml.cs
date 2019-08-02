@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using MobileApp.Models;
 using MobileApp.Views;
 using MobileApp.ViewModels;
+using System.Collections.Specialized;
 
 namespace MobileApp.Views
 {
@@ -23,6 +25,14 @@ namespace MobileApp.Views
             InitializeComponent();
 
             BindingContext = viewModel = new TerminalsViewModel();
+
+            TerminalsListView.ItemsSource = viewModel.Terminals;
+            viewModel.Terminals.CollectionChanged += RefreshCollection;
+        }
+
+        void RefreshCollection(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            TerminalsListView.ItemsSource = viewModel.Terminals;
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

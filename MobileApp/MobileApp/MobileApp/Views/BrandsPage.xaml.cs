@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using MobileApp.ViewModels;
+using System.Collections.Specialized;
 
 namespace MobileApp.Views
 {
@@ -18,12 +19,17 @@ namespace MobileApp.Views
         public BrandsPage()
         {
             InitializeComponent();
-
-            BindingContext = viewModel = new BrandsViewModel();
+            viewModel = new BrandsViewModel();
             MyListView.ItemsSource = viewModel.Brands;
+            viewModel.Brands.CollectionChanged += RefreshTheCollection;
 
             SearchBar.TextChanged += FilterTheList;
             Switch.Toggled += FilterTheList;
+        }
+
+        void RefreshTheCollection(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            MyListView.ItemsSource = viewModel.Brands;
         }
 
         void FilterTheList(object sender, EventArgs eventArgs)
