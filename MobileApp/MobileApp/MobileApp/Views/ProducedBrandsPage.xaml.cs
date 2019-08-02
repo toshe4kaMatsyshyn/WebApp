@@ -21,7 +21,7 @@ namespace MobileApp.Views
 
             BindingContext = viewModel = new ProducedBrandsViewModel();
 			
-			MyListView.ItemsSource = viewModel.producedBrands;
+			MyListView.ItemsSource = viewModel.ProducedBrand;
         }
     }
 }

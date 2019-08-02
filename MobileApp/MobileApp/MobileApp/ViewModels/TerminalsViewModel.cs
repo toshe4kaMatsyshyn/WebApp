@@ -24,12 +24,12 @@ namespace MobileApp.ViewModels
         public ObservableCollection<Terminal> Terminals { get; set; }
         public Command LoadItemsCommand { get; set; }
 
-        WorkWithServer work = new WorkWithServer();
+        DataLoad<Terminal> dataLoad { get; set; } = new DataLoad<Terminal>();
 
         public TerminalsViewModel()
         {
             Title = "Terminals";
-            Terminals = work.GetTerminals();
+            Terminals = dataLoad.Items;
             LoadItemsCommand = new Command(() => LoadTerminals());
         }
 

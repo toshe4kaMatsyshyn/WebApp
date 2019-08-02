@@ -1,18 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 using MobileApp.Models;
-
+using MobileApp.Services;
 namespace MobileApp.ViewModels
 {
     class DeliveredBrandsViewModel:BaseViewModel
     {
-        public List<DeliveredBrands> deliveredBrands { get; set; }
+        public ObservableCollection<DeliveredBrands> deliveredBrands { get; set; }
+
+        DataLoad<DeliveredBrands> dataLoad { get; set; } = new DataLoad<DeliveredBrands>();
+
         public DeliveredBrandsViewModel()
         {
             Title = "Delivered Brands";
-            deliveredBrands = new List<DeliveredBrands>();
+            deliveredBrands = dataLoad.Items;
         }
     }
 }

@@ -62,5 +62,6 @@ namespace MobileApp.Services
             }
             return Terminals;
         }
+
     }
 }

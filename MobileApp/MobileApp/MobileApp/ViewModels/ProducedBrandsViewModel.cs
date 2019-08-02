@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Text;
 
 using MobileApp.Models;
@@ -7,14 +8,38 @@ using MobileApp.Services;
 
 namespace MobileApp.ViewModels
 {
-    public class ProducedBrandsViewModel:BaseViewModel
+    public class ProducedBrandsViewModel:BaseViewModel,INotifyPropertyChanged
     {
-        public List<ProducedBrands> producedBrands { get; set; }
+        ObservableCollection<ProducedBrands> producedBrands;
+        public ObservableCollection<ProducedBrands> ProducedBrand
+        {
+            get
+            {
+                return producedBrands;
+            }
+            set
+            {
+                if(value!=null)
+                {
+                    producedBrands = value;
+                    OnPropertyChanged("ProducedBrand");
+                }
+            }
+        }
+
+        DataLoad<ProducedBrands> dataLoad { get; set; } = new DataLoad<ProducedBrands>();
 
         public ProducedBrandsViewModel()
         {
             Title = "Produced Brands";
-            producedBrands = new List<ProducedBrands>();
+            ProducedBrand = dataLoad.Items;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

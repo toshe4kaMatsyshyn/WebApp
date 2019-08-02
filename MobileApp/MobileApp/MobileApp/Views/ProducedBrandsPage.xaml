@@ -4,7 +4,7 @@
              x:Class="MobileApp.Views.ProducedBrandsPage"
              Title="{Binding Title}">
   <ListView x:Name="MyListView"
-            ItemsSource="{Binding producedBrands}"
+            ItemsSource="{Binding ProducedBrand}"
             CachingStrategy="RecycleElement">
             
     <!--Built in Cells-->
@@ -26,10 +26,6 @@
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
-                        <Label Text="{Binding Description}" 
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
                     </StackLayout>
         </ViewCell>
       </DataTemplate>

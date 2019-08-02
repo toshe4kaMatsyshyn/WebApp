@@ -21,14 +21,12 @@ namespace MobileApp.ViewModels
     public class BrandsViewModel : BaseViewModel
     {
         public ObservableCollection<Brands> Brands { get; set; }
+        DataLoad<Brands> dataLoad { get; set; } = new DataLoad<Brands>();
+
         public BrandsViewModel()
         {
             Title = "Brands";
-            Brands = new ObservableCollection<Brands>();
-            WorkWithServer work = new WorkWithServer();
-            work.GetBrands();
-            Brands = work.GetBrands();
-            
+            Brands = dataLoad.Items;
         }
 
         async void LoadBrands()
