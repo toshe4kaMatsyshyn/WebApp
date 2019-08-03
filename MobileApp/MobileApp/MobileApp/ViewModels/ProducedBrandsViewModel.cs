@@ -10,22 +10,7 @@ namespace MobileApp.ViewModels
 {
     public class ProducedBrandsViewModel:BaseViewModel,INotifyPropertyChanged
     {
-        ObservableCollection<ProducedBrands> producedBrands;
-        public ObservableCollection<ProducedBrands> ProducedBrand
-        {
-            get
-            {
-                return producedBrands;
-            }
-            set
-            {
-                if(value!=null)
-                {
-                    producedBrands = value;
-                    OnPropertyChanged("ProducedBrand");
-                }
-            }
-        }
+        public ObservableCollection<ProducedBrands> ProducedBrand { get; private set; }
 
         DataLoad<ProducedBrands> dataLoad { get; set; } = new DataLoad<ProducedBrands>();
 
@@ -33,13 +18,9 @@ namespace MobileApp.ViewModels
         {
             Title = "Produced Brands";
             ProducedBrand = dataLoad.Items;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            foreach(ProducedBrands producedBrands in ProducedBrand)
+                if (producedBrands.Brand != null) Console.WriteLine(producedBrands.Brand);
+                else Console.WriteLine("brands is null");
         }
     }
 }

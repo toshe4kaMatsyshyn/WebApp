@@ -21,7 +21,7 @@ namespace MobileApp.ViewModels
     public class TerminalsViewModel : BaseViewModel
     {
 
-        public ObservableCollection<Terminal> Terminals { get; set; }
+        public ObservableCollection<Terminal> Terminals { get; private set; }
         public Command LoadItemsCommand { get; set; }
 
         DataLoad<Terminal> dataLoad { get; set; } = new DataLoad<Terminal>();

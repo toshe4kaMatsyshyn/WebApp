@@ -21,5 +21,10 @@ namespace MobileApp.Models
 
         public int CountOfProduced { get; set; }
         public virtual ICollection<ProducedBrands> ProducedBrands { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

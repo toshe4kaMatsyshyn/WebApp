@@ -8,7 +8,7 @@ namespace MobileApp.ViewModels
 {
     class DeliveredBrandsViewModel:BaseViewModel
     {
-        public ObservableCollection<DeliveredBrands> deliveredBrands { get; set; }
+        public ObservableCollection<DeliveredBrands> deliveredBrands { get; private set; }
 
         DataLoad<DeliveredBrands> dataLoad { get; set; } = new DataLoad<DeliveredBrands>();
 

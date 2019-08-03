@@ -21,42 +21,14 @@ namespace MobileApp.Views
             InitializeComponent();
             viewModel = new BrandsViewModel();
             MyListView.ItemsSource = viewModel.Brands;
-            viewModel.Brands.CollectionChanged += RefreshTheCollection;
 
             SearchBar.TextChanged += FilterTheList;
             Switch.Toggled += FilterTheList;
         }
 
-        void RefreshTheCollection(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            MyListView.ItemsSource = viewModel.Brands;
-        }
-
         void FilterTheList(object sender, EventArgs eventArgs)
         {
-            string Text = SearchBar.Text;
-            if(!string.IsNullOrEmpty(Text))
-            {
-                if(Switch.IsToggled)
-                {
-                    MyListView.ItemsSource = viewModel.Brands.Where(B => B.Name.Length > 4).Where(b => b.Name.Contains(Text));
-                }
-                else
-                {
-                    MyListView.ItemsSource = viewModel.Brands.Where(b => b.Name.Contains(Text));
-                }
-            }
-            else
-            {
-                if (Switch.IsToggled)
-                {
-                    MyListView.ItemsSource = viewModel.Brands.Where(b => b.Name.Length > 4);//Where(u => u.Name.Length > 4);
-                }
-                else
-                {
-                    MyListView.ItemsSource = viewModel.Brands;
-                }
-            }
+            MyListView.ItemsSource = viewModel.CollectionFilter(SearchBar.Text, Switch.IsToggled);
         }
     }
 }

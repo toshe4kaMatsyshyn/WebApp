@@ -30,8 +30,12 @@ namespace DataLibrary
                 //     Console.WriteLine(produced.Brand.Name+"\t"+produced.CountOfProduced);
 
 
+                foreach (Terminal terminal in context.Terminal)
+                    terminal.ProducedBrands = context.GetAllBrandsInTreminal(terminal).Count;
+
+                context.SaveChanges();
                 foreach(Terminal terminal in context.Terminal)
-                    Console.WriteLine(terminal.Name);
+                    Console.WriteLine($"{terminal.ProducedBrands}     {terminal.Name}");
 
                 
             }

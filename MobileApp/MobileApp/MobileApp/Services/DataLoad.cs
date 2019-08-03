@@ -39,6 +39,8 @@ namespace MobileApp.Services
                 JArray jArray = JArray.Parse(content);
 
                 Items = JsonConvert.DeserializeObject<ObservableCollection<T>>(jArray.ToString());
+
+                
             }
             catch (Exception exc)
             {

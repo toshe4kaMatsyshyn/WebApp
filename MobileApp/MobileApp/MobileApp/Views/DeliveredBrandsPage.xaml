@@ -21,10 +21,11 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="10,10,10,10">
                         <Label Text="{Binding Id}" 
                    Style="{DynamicResource ListItemTextStyle}" />
-                        <Label Text="{Binding Detail}" 
+                        <Label Text="{Binding CountOfDelivered}" 
+                               HorizontalOptions="EndAndExpand"
                    Style="{DynamicResource ListItemDetailTextStyle}"/>
                     </StackLayout>
                 </ViewCell>

@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>ProducedBrandsDB</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+</head>
+<body>
+    <h2>ProducedBrandsDB</h2>
+    <h2></h2>
+    <button onclick="window.location.href='/index.html'">Home</button>
+    <button onclick="window.location.href='/BrandsDB.html'">BrandsDB</button>
+    <button onclick="window.location.href='/ProducedBrandsDB.html'">ProducedBrandsDB</button>
+    <button onclick="window.location.href='/DeliveredBrandsDB.html'">DeliveredBrandsDB</button>
+    <button onclick="window.location.href='/TerminalDB.html'">TerminalDB</button>
+    <form name="userForm">
+        <input type="hidden" name="id" value="0" />
+        <div class="form-group">
+            <label for="name">YearOfProduced:</label>
+            <input class="form-control" name="yearOfProduced" />
+        </div>
+        <div class="form-group">
+            <label for="age">BrandId:</label>
+            <input class="form-control" name="brandId" />
+        </div>
+        <div class="form-group">
+            <label for="age">CountOfProduced:</label>
+            <input class="form-control" name="countOfProduced" />
+        </div>
+        <div class="panel-body">
+            <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
+            <a id="reset" class="btn btn-sm btn-primary">Сбросить</a>
+        </div>
+    </form>
+    <table class="table table-condensed table-striped table-bordered">
+        <thead><tr><th>Id</th><th>YearOfProduced</th><th>BrandId</th><th>CountOfProduced</th><th></th></tr></thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Получение всех
+        function GetProducedBrands() {
+            $.ajax({
+                url: '/api/producedbrands',
+                type: 'GET',
+                contentType: "application/json",
+                success: function (producedBrands) {
+                    var rows = "";
+                    $.each(producedBrands, function (index, producedBrands) {
+                        // добавляем полученные элементы в таблицу
+                        rows += row(producedBrands);
+                    })
+                    $("table tbody").append(rows);
+                }
+            });
+        }
+        // Получение одного пользователя
+        function GetProducedBrand(id) {
+            $.ajax({
+                url: '/api/producedbrands/' + id,
+                type: 'GET',
+                contentType: "application/json",
+                success: function (producedbrands) {
+                    var form = document.forms["userForm"];
+                    form.elements["id"].value = producedbrands.id;
+                    form.elements["brandId"].value = producedbrands.brandId;
+                    form.elements["yearOfProduced"].value = producedbrands.yearOfProduced;
+                    form.elements["countOfProduced"].value = producedbrands.countOfProduced;
+                }
+            });
+        }
+        // Добавление пользователя
+        function CreateProducedBrand(brandId, yearOfProduced, countOfProduced) {
+            $.ajax({
+                url: "api/producedbrands",
+                contentType: "application/json",
+                method: "POST",
+                data: JSON.stringify({
+                    //id: "89",
+                    brandId: brandId,
+                    yearOfProduced: yearOfProduced,
+                    countOfProduced: countOfProduced,
+                }),
+                success: function (producedbrands) {
+                    reset();
+                    $("table tbody").append(row(producedbrands));
+                }
+            })
+        }
+        // Изменение пользователя
+        function EditProducedBrand(id, brandId, yearOfProduced, countOfProduced) {
+            $.ajax({
+                url: "api/producedbrands",
+                contentType: "application/json",
+                method: "PUT",
+                data: JSON.stringify({
+                    id: id,
+                    brandId: brandId,
+                    yearOfProduced: yearOfProduced,
+                    countOfProduced: countOfProduced,
+                }),
+                success: function (user) {
+                    reset();
+                    $("tr[data-rowid='" + user.id + "']").replaceWith(row(user));
+                }
+            })
+        }
+
+        // сброс формы
+        function reset() {
+            var form = document.forms["userForm"];
+            form.reset();
+            form.elements["id"].value = 0;
+        }
+
+        // Удаление пользователя
+        function DeleteProducedBrand(id) {
+            $.ajax({
+                url: "api/producedbrands/" + id,
+                contentType: "application/json",
+                method: "DELETE",
+                success: function (user) {
+                    $("tr[data-rowid='" + user.id + "']").remove();
+                }
+            })
+        }
+        // создание строки для таблицы
+        var row = function (user) {
+            return "<tr data-rowid='" + user.id + "'><td>" + user.id + "</td>" +
+                "<td>" + user.yearOfProduced + "</td> <td>" + user.brandId + "</td> <td>" + user.countOfProduced + "</td>" +
+                "<td><a class='editLink' data-id='" + user.id + "'>Изменить</a> | " +
+                "<a class='removeLink' data-id='" + user.id + "'>Удалить</a></td></tr>";
+        }
+        // сброс значений формы
+        $("#reset").click(function (e) {
+
+            e.preventDefault();
+            reset();
+        })
+
+        // отправка формы
+        $("form").submit(function (e) {
+            e.preventDefault();
+            var id = this.elements["id"].value;
+            var brandId = this.elements["brandId"].value;
+            var yearOfProduced = this.elements["yearOfProduced"].value;
+            var countOfProduced = this.elements["countOfProduced"].value;
+            if (id == 0)
+                CreateProducedBrand(brandId, yearOfProduced, countOfProduced);
+            else
+                EditProducedBrand(id, brandId, yearOfProduced, countOfProduced);
+        });
+
+        // нажимаем на ссылку Изменить
+        $("body").on("click", ".editLink", function () {
+            var id = $(this).data("id");
+            GetProducedBrand(id);
+        })
+        // нажимаем на ссылку Удалить
+        $("body").on("click", ".removeLink", function () {
+            var id = $(this).data("id");
+            DeleteProducedBrand(id);
+        })
+
+        // загрузка пользователей
+        GetProducedBrands();
+
+    </script>
+</body>
+</html>

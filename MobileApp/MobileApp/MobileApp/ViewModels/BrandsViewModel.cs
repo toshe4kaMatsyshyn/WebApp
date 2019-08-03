@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -20,7 +21,7 @@ namespace MobileApp.ViewModels
 {
     public class BrandsViewModel : BaseViewModel
     {
-        public ObservableCollection<Brands> Brands { get; set; }
+        public ObservableCollection<Brands> Brands { get; private set; }
         DataLoad<Brands> dataLoad { get; set; } = new DataLoad<Brands>();
 
         public BrandsViewModel()
@@ -29,29 +30,36 @@ namespace MobileApp.ViewModels
             Brands = dataLoad.Items;
         }
 
-        async void LoadBrands()
+        public ObservableCollection<Brands> CollectionFilter(string Text,bool SwitchIsToggled)
         {
-            string url = "http://192.168.1.105:2627/api/brands";
-            try
+            ObservableCollection<Brands> newCollection = new ObservableCollection<Brands>();
+
+            //тестовая фильтрация
+            if (!string.IsNullOrEmpty(Text))
             {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(url);
-                var response = await client.GetAsync(client.BaseAddress);
-                response.EnsureSuccessStatusCode();
+                if (SwitchIsToggled)
+                {
 
-                var content = await response.Content.ReadAsStringAsync();
-                JArray jArray = JArray.Parse(content);
-
-                this.Brands = JsonConvert.DeserializeObject<ObservableCollection<Brands>>(jArray.ToString());
-
-                Console.WriteLine(Brands.Count);
-                foreach (Brands brands in Brands)
-                    Console.WriteLine(brands.Name);
+                    //newCollection.Add(Brands.First<Brands>());
+                }
+                else
+                {
+                    //newCollection.Add(Brands.Last<Brands>());
+                }
             }
-            catch (Exception exc)
+            else
             {
-                Console.WriteLine(exc.Message);
+                if (SwitchIsToggled)
+                {
+                    //newCollection.Add(Brands[Brands.Count - 2]);
+                }
+                else
+                {
+                    //newCollection = Brands;
+                }
             }
+
+            return newCollection;
         }
     }
 }
