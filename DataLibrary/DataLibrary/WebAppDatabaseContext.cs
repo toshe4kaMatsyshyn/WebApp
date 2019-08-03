@@ -241,10 +241,9 @@ namespace DataLibrary
         /// <returns>Список брендов</returns>
         public List<Brands> GetAllBrandsInTreminal(Terminal terminal)
         {
-            List<Brands> brandsInTreminal = null;
+            List<Brands> brandsInTreminal = new List<Brands>();
             try
             {
-                brandsInTreminal = new List<Brands>();
                 Entry(terminal).Collection("TerminalsAndBrands").Load();
                 foreach (TerminalsAndBrands tb in terminal.TerminalsAndBrands)
                 {
@@ -259,6 +258,92 @@ namespace DataLibrary
                 return brandsInTreminal;
             }
         }
+
+        /// <summary>
+        /// Получение всех производимых брендов, которые есть в определенном терминале
+        /// </summary>
+        /// <param name="terminal">Терминал, который нас интересует</param>
+        /// <returns>Список брендов</returns>
+        public List<ProducedBrands> GetAllProducedBrandsInTerminal(Terminal terminal)
+        {
+            List<ProducedBrands> producedBrandsInTerminal = new List<ProducedBrands>();
+            try
+            {
+                Entry(terminal).Collection("TerminalsAndBrands").Load();
+                foreach (TerminalsAndBrands tb in terminal.TerminalsAndBrands)
+                {
+                    Entry(tb).Reference("ProducedBrands").Load();
+                    producedBrandsInTerminal.Add(tb.ProducedBrands);
+                }
+                return producedBrandsInTerminal;
+            }
+            catch (Exception exc)
+            {
+                return producedBrandsInTerminal;
+            }
+        }
+
+        /// <summary>
+        /// Получение списка отсортированых терминалов по количеству производимых брендов
+        /// </summary>
+        /// <returns></returns>
+        public List<Terminal> GetSortedTerminals()
+        {
+            List<Terminal> terminals = new List<Terminal>();
+            foreach (Terminal terminal in Terminal)
+                terminals.Add(terminal);
+            terminals.Sort();
+            return terminals;
+        }
+
+        /// <summary>
+        /// Получение брендов, производимых в определенном году
+        /// </summary>
+        /// <param name="Year"></param>
+        /// <returns></returns>
+        public List<Brands> GetBrandsByYear(int Year)
+        {
+            List<Brands> brandsByYear = new List<Brands>();
+            try
+            {
+                foreach(ProducedBrands producedBrands in ProducedBrands)
+                    if(producedBrands.YearOfProduced.Value.Year == Year)
+                    {
+                        Entry(producedBrands).Reference("Brand").Load();
+                        brandsByYear.Add(producedBrands.Brand);
+                    }
+                return brandsByYear;
+            }
+            catch(Exception exc)
+            {
+                return brandsByYear;
+            }
+        }
+
+        /// <summary>
+        /// Получить все бренды, которые есть в производстве
+        /// (Может быть такое, что бренд есть, но на него не ссылается производимый бренд)
+        /// </summary>
+        /// <returns></returns>
+        public List<Brands> GetAllProducedBrands()
+        {
+            List<Brands> producedBrands = new List<Brands>();
+            try
+            {
+                foreach(Brands brand in Brands)
+                {
+                    Entry(brand).Collection("ProducedBrands").Load();
+                    if (brand.ProducedBrands.Count != 0) producedBrands.Add(brand);
+                }
+                return producedBrands;
+
+            }
+            catch(Exception exc)
+            {
+                return producedBrands;
+            }
+        }
+        
     }
 }
 

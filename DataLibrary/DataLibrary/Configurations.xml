@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <connectionStrings>
+    <add name="WebAppDataBaseDatabase"
+         connectionString="Server=DESKTOP-GN3L1JT\\SQLEXPRESS;Database=WebAppDatabase;Trusted_Connection=True;" />
+  </connectionStrings>
+</configuration>

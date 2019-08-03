@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>BrandsDataBase</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+</head>
+<body>
+    <h2>BrandsDataBase</h2>
+    <h2></h2>
+    <button onclick="window.location.href='/index.html'">Home</button>
+    <button onclick="window.location.href='/BrandsDB.html'">BrandsDB</button>
+    <button onclick="window.location.href='/ProducedBrandsDB.html'">ProducedBrandsDB</button>
+    <button onclick="window.location.href='/DeliveredBrandsDB.html'">DeliveredBrandsDB</button>
+    <button onclick="window.location.href='/TerminalDB.html'">TerminalDB</button>
+    <form name="userForm">
+        <input type="hidden" name="id" value="0" />
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input class="form-control" name="name" />
+        </div>
+        <div class="panel-body">
+            <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
+            <a id="reset" class="btn btn-sm btn-primary">Сбросить</a>
+        </div>
+    </form>
+    <table class="table table-condensed table-striped table-bordered">
+        <thead><tr><th>Id</th><th>Name</th><th></th></tr></thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Получение всех пользователей
+        function GetBrands() {
+            $.ajax({
+                url: '/api/brands',
+                type: 'GET',
+                contentType: "application/json",
+                success: function (brand) {
+                    var rows = "";
+                    $.each(brand, function (index, brand) {
+                        // добавляем полученные элементы в таблицу
+                        rows += row(brand);
+                    })
+                    $("table tbody").append(rows);
+                }
+            });
+        }
+        // Получение одного пользователя
+        function GetBrand(id) {
+            $.ajax({
+                url: '/api/brands/' + id,
+                type: 'GET',
+                contentType: "application/json",
+                success: function (brand) {
+                    var form = document.forms["userForm"];
+                    form.elements["id"].value = brand.id;
+                    form.elements["name"].value = brand.name;
+                }
+            });
+        }
+        // Добавление пользователя
+        function CreateBrand(Name) {
+            $.ajax({
+                url: "api/brands",
+                contentType: "application/json",
+                method: "POST",
+                data: JSON.stringify({
+                    //id: "89",
+                    name: Name,
+                    //producedBrands: producedBrands,
+                }),
+                success: function (brand) {
+                    reset();
+                    $("table tbody").append(row(brand));
+                }
+            })
+        }
+        // Изменение пользователя
+        function EditBrand(Id, Name) {
+            $.ajax({
+                url: "api/brands",
+                contentType: "application/json",
+                method: "PUT",
+                data: JSON.stringify({
+                    id: Id,
+                    name: Name,
+                    //producedBrands: userAge
+                }),
+                success: function (user) {
+                    reset();
+                    $("tr[data-rowid='" + user.id + "']").replaceWith(row(user));
+                }
+            })
+        }
+
+        // сброс формы
+        function reset() {
+            var form = document.forms["userForm"];
+            form.reset();
+            form.elements["id"].value = 0;
+        }
+
+        // Удаление пользователя
+        function DeleteBrand(id) {
+            $.ajax({
+                url: "api/brands/" + id,
+                contentType: "application/json",
+                method: "DELETE",
+                success: function (user) {
+                    $("tr[data-rowid='" + user.id + "']").remove();
+                }
+            })
+        }
+        // создание строки для таблицы
+        var row = function (user) {
+            return "<tr data-rowid='" + user.id + "'><td>" + user.id + "</td>" +
+                "<td>" + user.name +
+                "<td><a class='editLink' data-id='" + user.id + "'>Изменить</a> | " +
+                "<a class='removeLink' data-id='" + user.id + "'>Удалить</a></td></tr>";
+        }
+        // сброс значений формы
+        $("#reset").click(function (e) {
+
+            e.preventDefault();
+            reset();
+        })
+
+        // отправка формы
+        $("form").submit(function (e) {
+            e.preventDefault();
+            var id = this.elements["id"].value;
+            var name = this.elements["name"].value;
+            //var producedBrands = this.elements["age"].value;
+            if (id == 0)
+                CreateBrand(name);
+            else
+                EditBrand(id, name);
+        });
+
+        // нажимаем на ссылку Изменить
+        $("body").on("click", ".editLink", function () {
+            var id = $(this).data("id");
+            GetBrand(id);
+        })
+        // нажимаем на ссылку Удалить
+        $("body").on("click", ".removeLink", function () {
+            var id = $(this).data("id");
+            DeleteBrand(id);
+        })
+
+        // загрузка пользователей
+        GetBrands();
+
+    </script>
+</body>
+</html>
